@@ -11,5 +11,3 @@ jobs:
         with:
           organisation: strawberry-graphql
           team: strawberry contributors
-        env:
-          ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
