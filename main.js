@@ -6,7 +6,7 @@ module.exports = async ({ github, context, core }) => {
     return;
   }
 
-  const octokit = new github.GitHub(ACCESS_TOKEN);
+  const octokit = new github.GitHub();
 
   const team = await octokit.teams.getByName({
     org: ORGANISATION,
