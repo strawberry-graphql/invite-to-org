@@ -19,7 +19,12 @@
   },
   "homepage": "https://github.com/strawberry-graphql/invite-to-org#readme",
   "dependencies": {
+    "@actions/core": "^1.5.0",
+    "@actions/github": "^5.0.0",
     "@vercel/ncc": "^0.30.0",
     "typescript": "^4.4.2"
+  },
+  "devDependencies": {
+    "@types/node": "^16.7.13"
   }
 }
