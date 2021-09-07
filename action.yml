@@ -19,7 +19,7 @@ runs:
       env:
         ORGANISATION: ${{ inputs.organisation }}
         TEAM: ${{ inputs.team }}
-        PR_NUMBER: ${{ steps.get-info.outputs.pr-number }}
+        PR_NUMBER: "2"  #${{ steps.get-info.outputs.pr-number }}
       with:
         script: |
           const script = require('./main.js')
