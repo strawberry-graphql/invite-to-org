@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - id: foo
-        uses: strawberry-graphql/invite-to-org-action@main
+        uses: ./
         with:
           organisation: strawberry-graphql
           team: strawberry contributors
