@@ -8,6 +8,9 @@ inputs:
   team:
     description: "Team name"
     required: true
+  github-token:
+    description: "Github Token"
+    required: true
 
 runs:
   using: "composite"
@@ -20,6 +23,7 @@ runs:
         ORGANISATION: ${{ inputs.organisation }}
         TEAM: ${{ inputs.team }}
         PR_NUMBER: "2"  #${{ steps.get-info.outputs.pr-number }}
+        ACCESS_TOKEN: ${{ inputs.github-token }}
       with:
         script: |
           const script = require('./main.js')
