@@ -16,6 +16,10 @@ runs:
       id: get-info
       uses: strawberry-graphql/get-pr-info-action@main
     - uses: actions/github-script@v4
+      env:
+        ORGANISATION: ${{ inputs.organisation }}.
+        TEAM: ${{ inputs.team }}.
+        PR_NUMBER: ${{ steps.get-info.outputs.pr-number }}.
       with:
         script: |
           const script = require('./main.js')

@@ -1,9 +1,7 @@
 module.exports = async ({ github, context, core }) => {
-  const organisation = core.getInput("organisation", { required: true });
-  const teamName = core.getInput("team", { required: true });
-  const prNumber = core.getInput("pr-number");
+  const { ORGANISATION, TEAM, PR_NUMBER } = process.env;
 
-  if (!prNumber) {
+  if (!PR_NUMBER) {
     console.log("no PR found.");
     return;
   }
@@ -11,8 +9,8 @@ module.exports = async ({ github, context, core }) => {
   const octokit = new github.GitHub(ACCESS_TOKEN);
 
   const team = await octokit.teams.getByName({
-    org: organisation,
-    team_slug: teamName,
+    org: ORGANISATION,
+    team_slug: TEAM,
   });
 
   console.log(team);
