@@ -1,0 +1,19 @@
+name: "Invite to organisation"
+description: "Invite contributors to organisation"
+
+inputs:
+  organisation:
+    description: "Organisation name"
+    required: true
+  team:
+    description: "Team name"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get PR info
+      id: get-info
+      uses: strawberry-graphql/get-pr-info-action@v1
+      env:
+        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
