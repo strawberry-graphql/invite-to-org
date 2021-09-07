@@ -15,8 +15,8 @@ runs:
     - name: Get PR info
       id: get-info
       uses: strawberry-graphql/get-pr-info-action@main
-    - id: random-number-generator
-      run: echo "${{ steps.get-info.outputs.contributor-username }}"
-      shell: bash
-    - run: node dist/index.js
-      shell: bash
+    - uses: actions/github-script@v4
+      with:
+        script: |
+          const script = require('./main.js')
+          await script({github, context, core})
