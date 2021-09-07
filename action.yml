@@ -1,0 +1,36 @@
+name: "Invite to organisation"
+description: "Invite contributors to organisation"
+
+inputs:
+  organisation:
+    description: "Organisation name"
+    required: true
+  team:
+    description: "Team name"
+    required: true
+  github-token:
+    description: "Github Token"
+    required: true
+  comment:
+    description: "Comment message"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Get PR info
+      id: get-info
+      uses: strawberry-graphql/get-pr-info-action@main
+    - uses: actions/github-script@v4
+      env:
+        ORGANISATION: ${{ inputs.organisation }}
+        TEAM: ${{ inputs.team }}
+        USERNAME: ${{ steps.get-info.outputs.contributor-username }}
+        REPOSITORY_NAME: ${{ steps.get-info.outputs.repository-name }}
+        PR_NUMBER: ${{ steps.get-info.outputs.pr-number }}
+        COMMENT: ${{ inputs.comment }}
+      with:
+        github-token: ${{ env.ACCESS_TOKEN }}
+        script: |
+          const script = require('./main.js')
+          await script({github, context, core})
