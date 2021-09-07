@@ -15,5 +15,3 @@ runs:
     - name: Get PR info
       id: get-info
       uses: strawberry-graphql/get-pr-info-action@v1
-      env:
-        ACCESS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
