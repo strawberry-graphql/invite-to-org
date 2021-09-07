@@ -1,0 +1,13 @@
+on: [pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: A job to say hello
+    steps:
+      - uses: actions/checkout@v2
+      - id: foo
+        uses: strawberry-graphql/invite-to-org-action@v1
+        with:
+          organisation: strawberry-graphql
+          team: strawberry contributors
