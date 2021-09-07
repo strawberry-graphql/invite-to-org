@@ -18,3 +18,5 @@ runs:
     - id: random-number-generator
       run: echo "${{ steps.get-info.outputs.contributor-username }}"
       shell: bash
+    - run: echo "${{ steps.get-info.outputs.pr-number }}"
+      shell: bash
