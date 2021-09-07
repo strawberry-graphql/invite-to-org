@@ -22,7 +22,7 @@ runs:
       env:
         ORGANISATION: ${{ inputs.organisation }}
         TEAM: ${{ inputs.team }}
-        PR_NUMBER: "2"  #${{ steps.get-info.outputs.pr-number }}
+        PR_NUMBER: "2" #${{ steps.get-info.outputs.pr-number }}
         ACCESS_TOKEN: ${{ inputs.github-token }}
       with:
         script: |
