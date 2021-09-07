@@ -21,6 +21,8 @@ module.exports = async ({ github, context, core }) => {
     team: TEAM,
   };
 
+  console.log(variables);
+
   const result = await github.graphql(query, variables);
   console.log(result);
 };
