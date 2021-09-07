@@ -12,12 +12,18 @@ module.exports = async ({ github, context, core }) => {
       login
     }
     organization(login: $login) {
+      name
+      teams(first: 10) {
+        nodes {
+          id
+          name
+        }
+      }
       team(slug: $team) {
         id
       }
     }
   }
-
   `;
 
   const variables = {
