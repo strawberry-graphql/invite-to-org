@@ -16,5 +16,5 @@ runs:
       id: get-info
       uses: strawberry-graphql/get-pr-info-action@v1
     - id: random-number-generator
-      run: echo "{{ steps.get-info.outputs.contributor-username }}"
+      run: echo "${{ steps.get-info.outputs.contributor-username }}"
       shell: bash
