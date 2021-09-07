@@ -8,12 +8,16 @@ module.exports = async ({ github, context, core }) => {
 
   const query = `
   query GetTeam($login: String!, $team: String!) {
+    viewer {
+      login
+    }
     organization(login: $login) {
       team(slug: $team) {
         id
       }
     }
   }
+
   `;
 
   const variables = {
