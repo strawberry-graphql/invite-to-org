@@ -10,5 +10,5 @@ jobs:
         uses: ./
         with:
           organisation: strawberry-graphql
-          team: strawberry contributors
+          team: strawberry-contributors
           github-token: ${{ secrets.GITHUB_TOKEN }}

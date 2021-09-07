@@ -6,10 +6,21 @@ module.exports = async ({ github, context, core }) => {
     return;
   }
 
-  const team = await github.teams.getByName({
-    org: ORGANISATION,
-    team_slug: TEAM,
-  });
+  const query = `
+  query GetTeam($login: String!, $team: String!) {
+    organization(login: $login) {
+      team(slug: $team) {
+        id
+      }
+    }
+  }
+  `;
 
-  console.log(team);
+  const variables = {
+    login: ORGANISATION,
+    team: TEAM,
+  };
+
+  const result = await github.graphql(query, variables);
+  console.log(result);
 };
