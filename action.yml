@@ -25,7 +25,7 @@ runs:
       env:
         ORGANISATION: ${{ inputs.organisation }}
         TEAM: ${{ inputs.team }}
-        REPOSITORY_NAME: ${{ steps.get-info.outputs.repository.name }}
+        REPOSITORY_NAME: ${{ steps.get-info.outputs.repository-name }}
         PR_NUMBER: ${{ steps.get-info.outputs.pr-number }}
       with:
         github-token: ${{ env.ACCESS_TOKEN }}
