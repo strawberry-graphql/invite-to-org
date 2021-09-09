@@ -45,12 +45,18 @@ module.exports = async ({ github, context, core }) => {
     return;
   }
 
-  // await octokit.request('GET /orgs/{org}/teams/{team_slug}/invitations', {
-  //   org: 'org',
-  //   team_slug: 'team_slug'
-  // })
-
+  const invitations = await octokit.paginate(
+    "GET /orgs/{org}/teams/{team_slug}/invitations",
+    {
+      org: ORGANISATION,
+      team_slug: TEAM,
+    }
+  );
   // TODO check invitations
+
+  console.log(invitations);
+
+  return;
 
   // create invitation for the user to join the team
 
