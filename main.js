@@ -5,10 +5,8 @@ module.exports = async ({ github, context, core }) => {
     PR_NUMBER: prNumber,
     REPOSITORY_NAME: repositoryName,
     COMMENT: comment,
+    USERNAME: username,
   } = process.env;
-
-  // TODO: from env
-  const username = "strawberrytest";
 
   if (!prNumber) {
     console.log("no PR found.");
@@ -26,8 +24,6 @@ module.exports = async ({ github, context, core }) => {
     }
   }
   `;
-
-  // check if user is a member of the team
 
   const variables = {
     org,
@@ -66,8 +62,6 @@ module.exports = async ({ github, context, core }) => {
     console.log("user is already invited to the team");
     return;
   }
-
-  // create invitation for the user to join the team
 
   await github.request(
     "PUT /orgs/{org}/teams/{team_slug}/memberships/{username}",

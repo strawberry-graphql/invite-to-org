@@ -25,6 +25,7 @@ runs:
       env:
         ORGANISATION: ${{ inputs.organisation }}
         TEAM: ${{ inputs.team }}
+        USERNAME: ${{ steps.get-info.outputs.contributor-username }}
         REPOSITORY_NAME: ${{ steps.get-info.outputs.repository-name }}
         PR_NUMBER: ${{ steps.get-info.outputs.pr-number }}
         COMMENT: ${{ inputs.comment }}
