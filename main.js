@@ -45,7 +45,7 @@ module.exports = async ({ github, context, core }) => {
     return;
   }
 
-  const invitations = await octokit.paginate(
+  const invitations = await github.paginate(
     "GET /orgs/{org}/teams/{team_slug}/invitations",
     {
       org: ORGANISATION,
