@@ -1,6 +1,8 @@
 module.exports = async ({ github, context, core }) => {
   const { ORGANISATION, TEAM, PR_NUMBER } = process.env;
 
+  const username = "strawberrytest";
+
   if (!PR_NUMBER) {
     console.log("no PR found.");
     return;
@@ -23,11 +25,10 @@ module.exports = async ({ github, context, core }) => {
   const variables = {
     login: ORGANISATION,
     team: TEAM,
-    username: "patrick91",
+    username,
   };
 
   const result = await github.graphql(query, variables);
-  console.log(result);
 
   const {
     organization: {
@@ -42,5 +43,22 @@ module.exports = async ({ github, context, core }) => {
     return;
   }
 
-  console.log(result, totalCount);
+  // await octokit.request('GET /orgs/{org}/teams/{team_slug}/invitations', {
+  //   org: 'org',
+  //   team_slug: 'team_slug'
+  // })
+
+  // TODO check invitations
+
+  // create invitation for the user to join the team
+
+  await github.request(
+    "PUT /orgs/{org}/teams/{team_slug}/memberships/{username}",
+    {
+      org: ORGANISATION,
+      team_slug: TEAM,
+      username,
+      role: "member",
+    }
+  );
 };
