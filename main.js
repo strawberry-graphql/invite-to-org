@@ -1,13 +1,13 @@
 module.exports = async ({ github, context, core }) => {
   const {
-    org: ORGANISATION,
-    team_slug: TEAM,
-    prNumber: PR_NUMBER,
+    ORGANISATION: org,
+    TEAM: team_slug,
+    PR_NUMBER: prNumber,
   } = process.env;
 
   const username = "strawberrytest";
 
-  if (!PR_NUMBER) {
+  if (!prNumber) {
     console.log("no PR found.");
     return;
   }
