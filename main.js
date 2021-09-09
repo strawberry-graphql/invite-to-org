@@ -43,7 +43,7 @@ module.exports = async ({ github, context, core }) => {
     },
   } = result;
 
-  console.log(result);
+  console.log(result.organization.team.members);
 
   if (totalCount >= 0) {
     console.log("user is a member of the team");
