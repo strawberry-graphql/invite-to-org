@@ -4,6 +4,10 @@ This GitHub action is used to invite a user to an organisation. We use this
 action to invite all users that have sent a pull request that has been merged to
 Strawberry GraphQL.
 
+This action is meant to run on pushes to the main branch and it will
+automatically find the PR that was merged and invite the user to the
+organisation.
+
 ## Inputs
 
 - `organisation`: the name of the organisation
@@ -23,7 +27,9 @@ that was merged.
 name: Get PR info
 
 on:
-  pull_request:
+  push:
+    branches:
+      - main
 
 jobs:
   invite-contributor:
