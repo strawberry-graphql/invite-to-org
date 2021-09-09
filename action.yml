@@ -5,8 +5,8 @@ inputs:
   organisation:
     description: "Organisation name"
     required: true
-  team:
-    description: "Team name"
+  team-slug:
+    description: "Team slug"
     required: true
   github-token:
     description: "Github Token"
