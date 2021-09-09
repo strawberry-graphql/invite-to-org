@@ -63,7 +63,7 @@ module.exports = async ({ github, context, core }) => {
   );
 
   if (invitationsForUser.length > 0) {
-    console.log("user is invited to the team");
+    console.log("user is already invited to the team");
     return;
   }
 
