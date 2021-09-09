@@ -27,6 +27,7 @@ runs:
         TEAM: ${{ inputs.team }}
         REPOSITORY_NAME: ${{ steps.get-info.outputs.repository-name }}
         PR_NUMBER: ${{ steps.get-info.outputs.pr-number }}
+        COMMENT: ${{ inputs.comment }}
       with:
         github-token: ${{ env.ACCESS_TOKEN }}
         script: |
