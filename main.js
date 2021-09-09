@@ -76,10 +76,12 @@ module.exports = async ({ github, context, core }) => {
     }
   );
 
-  await github.issues.createComment({
+  const commentResult = await github.issues.createComment({
     owner: "strawberry-graphql",
     repo: "invite-to-org-action",
     issue_number: prNumber,
     body: "You have been invited",
   });
+
+  console.log(commentResult);
 };
