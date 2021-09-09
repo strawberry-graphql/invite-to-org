@@ -1,3 +1,10 @@
+const BOTS = [
+  "dependabot-preview[bot]",
+  "dependabot-preview",
+  "dependabot",
+  "dependabot[bot]",
+];
+
 module.exports = async ({ github, context, core }) => {
   const {
     ORGANISATION: org,
@@ -10,6 +17,11 @@ module.exports = async ({ github, context, core }) => {
 
   if (!prNumber) {
     console.log("no PR found.");
+    return;
+  }
+
+  if (BOTS.includes(username)) {
+    console.log("skipping because PR was made by a bot.");
     return;
   }
 
