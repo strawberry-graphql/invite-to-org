@@ -7,7 +7,7 @@ module.exports = async ({ github, context, core }) => {
   }
 
   const query = `
-  query GetTeam($login: String!, $team: String!) {
+  query GetTeam($login: String!, $team: String!, $username: String!) {
     organization(login: $login) {
       team(slug: $team) {
         members(first: 1, query: $username) {
@@ -34,6 +34,11 @@ module.exports = async ({ github, context, core }) => {
       },
     },
   } = result;
+
+  if (totalCount >= 0) {
+    console.log("user is a member of the team");
+    return;
+  }
 
   console.log(result, totalCount);
 };
