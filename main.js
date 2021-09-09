@@ -3,8 +3,11 @@ module.exports = async ({ github, context, core }) => {
     ORGANISATION: org,
     TEAM: team_slug,
     PR_NUMBER: prNumber,
+    REPOSITORY_NAME: repositoryName,
+    COMMENT: comment,
   } = process.env;
 
+  // TODO: from env
   const username = "strawberrytest";
 
   if (!prNumber) {
@@ -77,10 +80,10 @@ module.exports = async ({ github, context, core }) => {
   );
 
   const commentResult = await github.issues.createComment({
-    owner: "strawberry-graphql",
-    repo: "invite-to-org-action",
+    owner: org,
+    repo: repositoryName,
     issue_number: prNumber,
-    body: "You have been invited",
+    body: comment,
   });
 
   console.log(commentResult);

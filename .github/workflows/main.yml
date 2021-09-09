@@ -11,5 +11,7 @@ jobs:
         with:
           organisation: strawberry-graphql
           team: strawberry-contributors
+          comment: |
+            Hi there! Thanks for the PR. You have now been invited to the organisation!
         env:
           ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
