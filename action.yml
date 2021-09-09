@@ -24,6 +24,7 @@ runs:
         TEAM: ${{ inputs.team }}
         PR_NUMBER: "2" #${{ steps.get-info.outputs.pr-number }}
       with:
+        github-token: ${{ env.ACCESS_TOKEN }}
         script: |
           const script = require('./main.js')
           await script({github, context, core})
