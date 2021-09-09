@@ -14,6 +14,9 @@ module.exports = async ({ github, context, core }) => {
       team(slug: $team) {
         members(first: 1, query: $username) {
           totalCount
+          nodes {
+            login
+          }
         }
       }
     }
@@ -27,6 +30,8 @@ module.exports = async ({ github, context, core }) => {
     team: TEAM,
     username,
   };
+
+  console.log(variables);
 
   const result = await github.graphql(query, variables);
 
