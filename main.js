@@ -8,7 +8,7 @@ module.exports = async ({ github, context, core }) => {
 
   const result = await github.teams.getByName({
     org: ORGANISATION,
-    slug: TEAM
+    slug: TEAM,
   });
   console.log(result);
 };
