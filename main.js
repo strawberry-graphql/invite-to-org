@@ -1,5 +1,9 @@
 module.exports = async ({ github, context, core }) => {
-  const { ORGANISATION, TEAM, PR_NUMBER } = process.env;
+  const {
+    org: ORGANISATION,
+    team_slug: TEAM,
+    prNumber: PR_NUMBER,
+  } = process.env;
 
   const username = "strawberrytest";
 
@@ -9,9 +13,9 @@ module.exports = async ({ github, context, core }) => {
   }
 
   const query = `
-  query GetTeam($login: String!, $team: String!, $username: String!) {
-    organization(login: $login) {
-      team(slug: $team) {
+  query GetTeam($org: String!, $team_slug: String!, $username: String!) {
+    organization(login: $org) {
+      team(slug: $team_slug) {
         members(first: 1, query: $username) {
           totalCount
         }
@@ -23,12 +27,10 @@ module.exports = async ({ github, context, core }) => {
   // check if user is a member of the team
 
   const variables = {
-    login: ORGANISATION,
-    team: TEAM,
+    org,
+    team_slug,
     username,
   };
-
-  console.log(variables);
 
   const result = await github.graphql(query, variables);
 
@@ -48,30 +50,36 @@ module.exports = async ({ github, context, core }) => {
   const invitations = await github.paginate(
     "GET /orgs/{org}/teams/{team_slug}/invitations",
     {
-      org: ORGANISATION,
-      team_slug: TEAM,
+      org,
+      team_slug,
     }
   );
-  // TODO check invitations
 
   const invitationsForUser = invitations.filter(
     (invitation) => invitation.login === username
   );
 
-  console.log(invitationsForUser.length);
-  console.log(invitationsForUser);
-
-  return;
+  if (invitationsForUser.length > 0) {
+    console.log("user is invited to the team");
+    return;
+  }
 
   // create invitation for the user to join the team
 
   await github.request(
     "PUT /orgs/{org}/teams/{team_slug}/memberships/{username}",
     {
-      org: ORGANISATION,
-      team_slug: TEAM,
+      org,
+      team_slug,
       username,
       role: "member",
     }
   );
+
+  await github.issues.createComment({
+    owner: "strawberry-graphql",
+    repo: "invite-to-org-action",
+    issue_number: prNumber,
+    body: "You have been invited",
+  });
 };
