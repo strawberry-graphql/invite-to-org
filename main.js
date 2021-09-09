@@ -54,7 +54,12 @@ module.exports = async ({ github, context, core }) => {
   );
   // TODO check invitations
 
-  console.log(invitations);
+  const invitationsForUser = invitations.filter(
+    (invitation) => invitation.login === username
+  );
+
+  console.log(invitationsForUser.length);
+  console.log(invitationsForUser);
 
   return;
 
