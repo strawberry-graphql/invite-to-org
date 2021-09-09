@@ -21,6 +21,8 @@ runs:
     - name: Get PR info
       id: get-info
       uses: strawberry-graphql/get-pr-info-action@v2
+      env:
+        ACCESS_TOKEN: ${{ inputs.github-token }}
     - uses: actions/github-script@v4
       env:
         ORGANISATION: ${{ inputs.organisation }}
@@ -30,7 +32,7 @@ runs:
         PR_NUMBER: ${{ steps.get-info.outputs.pr-number }}
         COMMENT: ${{ inputs.comment }}
       with:
-        github-token: ${{ env.ACCESS_TOKEN }}
+        github-token: ${{ inputs.github-token }}
         script: |
           const script = require('./main.js')
           await script({github, context, core})
