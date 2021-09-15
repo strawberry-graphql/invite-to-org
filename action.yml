@@ -20,7 +20,7 @@ runs:
   steps:
     - name: Get PR info
       id: get-info
-      uses: strawberry-graphql/get-pr-info-action@v2
+      uses: strawberry-graphql/get-pr-info-action@v3
       env:
         ACCESS_TOKEN: ${{ inputs.github-token }}
     - uses: actions/github-script@v4
