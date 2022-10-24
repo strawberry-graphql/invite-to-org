@@ -63,11 +63,11 @@ module.exports = async ({ github, context, core }) => {
     {
       org,
       team_slug,
-    }
+    },
   );
 
   const invitationsForUser = invitations.filter(
-    (invitation) => invitation.login === username
+    (invitation) => invitation.login === username,
   );
 
   if (invitationsForUser.length > 0) {
@@ -82,7 +82,7 @@ module.exports = async ({ github, context, core }) => {
       team_slug,
       username,
       role: "member",
-    }
+    },
   );
 
   const commentResult = await github.issues.createComment({
